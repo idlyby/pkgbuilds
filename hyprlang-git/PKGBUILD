@@ -1,0 +1,37 @@
+_pkgname="hyprlang"
+pkgname="${_pkgname}-git"
+pkgver=r32.1210de1
+pkgrel=1
+pkgdesc="A fast and user-friendly configuration language."
+arch=(any)
+url="https://github.com/hyprwm/hyprlang"
+license=('BSD')
+depends=()
+makedepends=(
+	git
+	cmake
+	ninja
+	gcc
+	gdb)
+source=("${_pkgname}::git+https://github.com/hyprwm/hyprlang.git")
+conflicts=("${_pkgname}")
+provides=(hyprlang)
+sha256sums=('SKIP')
+options=(!makeflags !buildflags !strip)
+
+pkgver() {
+  cd "$_pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+	cd "${srcdir}/${_pkgname}"
+	cmake -B build -S . -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr
+    cmake --build build
+}
+
+package() {
+	cd "${srcdir}/${_pkgname}"
+	DESTDIR="$pkgdir" cmake --install build
+	install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${_pkgname}"
+}
