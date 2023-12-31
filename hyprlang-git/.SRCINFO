@@ -1,0 +1,21 @@
+pkgbase = hyprlang-git
+	pkgdesc = A fast and user-friendly configuration language.
+	pkgver = r32.1210de1
+	pkgrel = 1
+	url = https://github.com/hyprwm/hyprlang
+	arch = any
+	license = BSD
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = gcc
+	makedepends = gdb
+	provides = hyprlang
+	conflicts = hyprlang
+	options = !makeflags
+	options = !buildflags
+	options = !strip
+	source = hyprlang::git+https://github.com/hyprwm/hyprlang.git
+	sha256sums = SKIP
+
+pkgname = hyprlang-git
