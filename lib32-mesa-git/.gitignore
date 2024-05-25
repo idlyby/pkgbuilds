@@ -1,0 +1,6 @@
+lib32-mesa-git-*
+mesa
+pkg
+src
+*.log
+*.zst
