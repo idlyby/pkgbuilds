@@ -15,7 +15,7 @@ depends=('python' 'python-pykka' 'python-requests' 'gstreamer' 'python-setuptool
          'python-dbus')
 checkdepends=('python-gobject' 'python-pytest' 'python-responses')
 makedepends=('python-sphinx' 'python-sphinx_rtd_theme' 'python-sphinx-autodoc-typehints' 'git' 'python-build' 'python-installer' 'python-wheel')
-provides=('mopidy')
+provides=("mopidy=$pkgver-$pkgrel")
 conflicts=('mopidy')
 replaces=('mopidy')
 backup=('etc/mopidy/mopidy.conf')
