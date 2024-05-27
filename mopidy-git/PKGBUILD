@@ -2,7 +2,7 @@
 # Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Contributor: Alexandre Petitjean <alpetitjean at gmail dot com>
 
-pkgname=mopidy
+pkgname=mopidy-git
 pkgver=4.0.0.8717.158e94ed
 pkgrel=1
 pkgdesc="An extensible music server written in Python"
@@ -14,6 +14,8 @@ depends=('python' 'python-pykka' 'python-requests' 'gstreamer' 'python-setuptool
          'python-dbus')
 checkdepends=('python-gobject' 'python-pytest' 'python-responses')
 makedepends=('python-sphinx' 'python-sphinx_rtd_theme' 'python-sphinx-autodoc-typehints' 'git' 'python-build' 'python-installer' 'python-wheel')
+conflicts=('mopidy')
+replaces=('mopidy')
 backup=('etc/mopidy/mopidy.conf')
 source=("git+https://github.com/mopidy/mopidy"
         'mopidy.conf'
