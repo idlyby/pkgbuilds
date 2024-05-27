@@ -3,6 +3,7 @@
 # Contributor: Alexandre Petitjean <alpetitjean at gmail dot com>
 
 pkgname=mopidy-git
+_pkgname=mopidy
 pkgver=4.0.0.8717.158e94ed
 pkgrel=1
 pkgdesc="An extensible music server written in Python"
@@ -28,24 +29,24 @@ sha512sums=('SKIP'
             'ff6c9f0406dfc1cc01ac6edcc6bae429342437397321ab9205ca273a63b28611d08005a0a5dba639b5ae2157a4f03a1d58c2199f7dbc6965864685b4b71f0b6f')
 
 pkgver() {
-  cd "${srcdir}/mopidy"
+  cd "${srcdir}/${_pkgname}"
   _ver=$(git describe --tags --abbrev=0 | cut -b2-6)
   echo "${_ver/-/_}.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)" 
 }
 
 build() {
-  cd ${pkgname}
+  cd ${_pkgname}
   python -m build --wheel --no-isolation
   make -C docs html man
 }
 
 check() {
-  cd ${pkgname}
+  cd ${_pkgname}
   python -m unittest discover -vs .
 }
 
 package() {
-  cd ${pkgname}
+  cd ${_pkgname}
   python -m installer --destdir="$pkgdir" dist/*.whl
 
   install -Dm755 extra/mopidyctl/mopidyctl "${pkgdir}/usr/bin/mopidyctl"
