@@ -26,6 +26,7 @@ pkgbase = mopidy-git
 	depends = python-tornado
 	depends = gst-plugins-base
 	depends = python-dbus
+	provides = mopidy=4.0.0.8717.158e94ed-1
 	conflicts = mopidy
 	replaces = mopidy
 	backup = etc/mopidy/mopidy.conf
