@@ -189,7 +189,7 @@ build() {
     -D gbm=enabled
     -D gles1=disabled
     -D gles2=enabled
-    -D glvnd=true
+    -D glvnd=enabled
     -D glx=dri
     -D intel-rt=disabled
     -D libunwind=disabled
@@ -206,6 +206,8 @@ build() {
     -D vulkan-drivers=amd,swrast
     -D vulkan-layers=device-select,overlay
     -D vulkan-beta=true
+    -D tools=[]
+    -D zstd=enabled
     --wrap-mode=nofallback
     -D prefix=/usr
     -D sysconfdir=/etc

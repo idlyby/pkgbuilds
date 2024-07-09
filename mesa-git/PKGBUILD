@@ -14,7 +14,7 @@
 # Contributor: Diego Jose <diegoxter1006@gmail.com>
 
 pkgname='mesa-git'
-pkgver=24.2.0_devel.189777.930e4fa2833.cf414e8e816ef69a9060a0db6760519c
+pkgver=24.2.0_devel.191738.c77a4e1db7d.cf414e8e816ef69a9060a0db6760519c
 options=(!lto) # LTO is bad for mesa, makes random applications crash on my system
 pkgrel=1
 pkgdesc="An open-source implementation of the OpenGL specification"
@@ -192,7 +192,7 @@ build() {
     -D gbm=enabled
     -D gles1=disabled
     -D gles2=enabled
-    -D glvnd=true
+    -D glvnd=enabled
     -D glx=dri
     -D intel-rt=disabled
     -D libunwind=disabled
@@ -209,7 +209,11 @@ build() {
     -D vulkan-drivers=amd,swrast
     -D vulkan-layers=device-select,overlay
     -D vulkan-beta=true
+    -D tools=[]
+    -D zstd=enabled
+    -D buildtype=plain
     --wrap-mode=nofallback
+    --force-fallback-for=syn,paste
     -D prefix=/usr
     -D sysconfdir=/etc
 )
