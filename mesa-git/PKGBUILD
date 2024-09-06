@@ -178,7 +178,6 @@ build() {
     -D android-libbacktrace=disabled
     -D b_ndebug=true
     -D b_lto=false
-    -D dri3=enabled
     -D egl=enabled
     -D gallium-drivers=radeonsi,swrast,zink
     -D gallium-extra-hud=true
