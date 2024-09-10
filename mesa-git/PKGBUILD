@@ -61,9 +61,6 @@ makedepends=(
 
   # d3d12 deps
   'directx-headers-git'
-
-  # gallium-omx deps
-  'libomxil-bellagio'
 )
 depends=(
     'clang'
@@ -116,11 +113,9 @@ conflicts=(
 )
 source=(
   'mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
-  'fix-rusticl-include-dirs.patch::https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29275.patch'
   LICENSE
 )
 b2sums=('SKIP'
-        'SKIP'
         'cc60238726b35133b5b729fb4ed1e76e04136588533615d84b4a54656d5b41727d5e7ff06ef4de3eb102eed6669d6c5c5cb8ac9fbdf6fc25aa477877c5c3ba87'
 )
 
@@ -178,7 +173,7 @@ build() {
     -D b_ndebug=true
     -D b_lto=false
     -D egl=enabled
-    -D gallium-drivers=radeonsi,swrast,zink
+    -D gallium-drivers=radeonsi,llvmpipe,softpipe,zink
     -D gallium-extra-hud=true
     -D gallium-nine=true
     -D gallium-opencl=icd
@@ -204,7 +199,7 @@ build() {
     -D valgrind=disabled
     -D video-codecs=all
     -D vulkan-drivers=amd,swrast
-    -D vulkan-layers=device-select,overlay
+    -D vulkan-layers=device-select,overlay,screenshot
     -D vulkan-beta=true
     -D tools=[]
     -D zstd=enabled

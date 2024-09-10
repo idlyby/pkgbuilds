@@ -35,7 +35,6 @@ makedepends=(
   'lib32-libxxf86vm'
   'lib32-llvm'
   'lib32-lm_sensors'
-  'lib32-rust-libs'
   'lib32-spirv-llvm-translator'
   'lib32-spirv-tools'
   'lib32-systemd'
@@ -53,7 +52,6 @@ makedepends=(
   'meson>=1.3.0'
   'python-mako'
   'python-ply'
-  'rust-bindgen'
   'wayland-protocols'
   'xorgproto'
 
@@ -89,7 +87,6 @@ optdepends=('opengl-man-pages: for the OpenGL API man pages')
 provides=(
   'lib32-vulkan-mesa-layers'
   'lib32-opencl-clover-mesa'
-  'lib32-opencl-rusticl-mesa'
   'lib32-opencl-driver'
   'lib32-opengl-driver'
   'lib32-vulkan-driver'
@@ -113,11 +110,9 @@ conflicts=(
 )
 source=(
   'mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
-  'fix-rusticl-include-dirs.patch::https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29275.patch'
   'LICENSE'
 )
 b2sums=('SKIP'
-        'SKIP'
         'cc60238726b35133b5b729fb4ed1e76e04136588533615d84b4a54656d5b41727d5e7ff06ef4de3eb102eed6669d6c5c5cb8ac9fbdf6fc25aa477877c5c3ba87' # LICENSE
 )
 
@@ -176,11 +171,11 @@ build() {
     -D b_ndebug=true
     -D b_lto=false
     -D egl=enabled
-    -D gallium-drivers=radeonsi,swrast,zink
+    -D gallium-drivers=radeonsi,llvmpipe,softpipe,zink
     -D gallium-extra-hud=true
     -D gallium-nine=true
     -D gallium-opencl=icd
-    -D gallium-rusticl=true
+    -D gallium-rusticl=false
     -D gallium-va=enabled
     -D gallium-vdpau=enabled
     -D gallium-xa=disabled
@@ -196,13 +191,12 @@ build() {
     -D microsoft-clc=disabled
     -D osmesa=true
     -D platforms=x11,wayland
-    -D rust_std=2021
     -D shared-glapi=enabled
     -D opencl-spirv=true
     -D valgrind=disabled
     -D video-codecs=all
     -D vulkan-drivers=amd,swrast
-    -D vulkan-layers=device-select,overlay
+    -D vulkan-layers=device-select,overlay,screenshot
     -D vulkan-beta=true
     -D tools=[]
     -D zstd=enabled
