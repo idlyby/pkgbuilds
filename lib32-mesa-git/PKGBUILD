@@ -179,7 +179,6 @@ build() {
     -D gallium-drivers=radeonsi,swrast,zink
     -D gallium-extra-hud=true
     -D gallium-nine=true
-    -D gallium-omx=disabled
     -D gallium-opencl=icd
     -D gallium-rusticl=true
     -D gallium-va=enabled
