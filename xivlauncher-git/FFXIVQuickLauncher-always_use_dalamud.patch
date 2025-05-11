@@ -1,0 +1,39 @@
+diff --git a/src/XIVLauncher.Common/Dalamud/DalamudLauncher.cs b/src/XIVLauncher.Common/Dalamud/DalamudLauncher.cs
+index b1c0d946..e5e6b2d2 100644
+--- a/src/XIVLauncher.Common/Dalamud/DalamudLauncher.cs
++++ b/src/XIVLauncher.Common/Dalamud/DalamudLauncher.cs
+@@ -133,32 +133,12 @@ namespace XIVLauncher.Common.Dalamud
+ 
+         private bool ReCheckVersion(DirectoryInfo gamePath)
+         {
+-            if (this.updater.State != DalamudUpdater.DownloadState.Done)
+-                return false;
+-
+-            if (this.updater.RunnerOverride != null)
+-                return true;
+-
+-            var info = DalamudVersionInfo.Load(new FileInfo(Path.Combine(this.updater.Runner.DirectoryName!,
+-                "version.json")));
+-
+-            if (Repository.Ffxiv.GetVer(gamePath) != info.SupportedGameVer)
+-                return false;
+-
+             return true;
+         }
+ 
+         public static bool CanRunDalamud(DirectoryInfo gamePath)
+         {
+-            using var client = new WebClient();
+-
+-            var versionInfoJson = client.DownloadString(REMOTE_BASE + "release");
+-            var remoteVersionInfo = JsonConvert.DeserializeObject<DalamudVersionInfo>(versionInfoJson);
+-
+-            if (Repository.Ffxiv.GetVer(gamePath) != remoteVersionInfo.SupportedGameVer)
+-                return false;
+-
+             return true;
+         }
+     }
+-}
+\ No newline at end of file
++}
