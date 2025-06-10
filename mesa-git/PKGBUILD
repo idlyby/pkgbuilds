@@ -189,7 +189,8 @@ build () {
   local meson_options=(
     -D android-libbacktrace=disabled
     -D b_ndebug=true
-    -D b_lto=false
+    -D b_lto=true
+    -D b_pgo=false
     -D egl=enabled
     -D gallium-drivers=radeonsi,softpipe,zink
     -D gallium-extra-hud=true
