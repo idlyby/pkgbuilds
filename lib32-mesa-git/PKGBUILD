@@ -185,8 +185,8 @@ build () {
 
   export PKG_CONFIG=/usr/bin/i686-pc-linux-gnu-pkg-config
   # Build only minimal debug info to reduce size
-  CFLAGS+='-fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=one -g1'
-  CXXFLAGS+='-fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=one -g1'
+  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=one -g1'
+  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=one -g1'
 
   export BINDGEN_EXTRA_CLANG_ARGS="-m32"
 
