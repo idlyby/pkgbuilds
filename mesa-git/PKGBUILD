@@ -189,7 +189,7 @@ build () {
   local meson_options=(
     -D android-libbacktrace=disabled
     -D b_ndebug=true
-    -D b_lto=false
+    -D b_lto=true
     -D b_pgo=off
     -D egl=enabled
     -D gallium-drivers=radeonsi,softpipe,zink
@@ -224,10 +224,8 @@ build () {
   )
 
   # Build only minimal debug info to reduce size
-  CFLAGS+=' -g1'
-  CXXFLAGS+=' -g1'
-  # CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=one -g1'
-  # CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=one -g1'
+  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=balanced -g1'
+  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=balanced -g1'
 
   meson setup mesa _build "${meson_options[@]}"
   meson configure --no-pager _build
