@@ -146,7 +146,7 @@ build () {
     -D android-libbacktrace=disabled
     -D b_ndebug=true
     -D b_lto=true
-    -D b_pgo=false
+    -D b_pgo=off
     -D buildtype=plain 
     -D gallium-drivers=radeonsi,softpipe,zink 
     -D egl=enabled 
