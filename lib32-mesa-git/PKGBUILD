@@ -13,7 +13,7 @@
 
 pkgname=lib32-mesa-git
 pkgdesc="an open-source implementation of the OpenGL specification, git version"
-pkgver=25.2.0_devel.205019.86d21fd2cfe.d41d8cd
+pkgver=25.2.0_devel.206761.a9aad4565f3.d41d8cd
 pkgrel=1
 arch=('x86_64')
 makedepends=(
@@ -185,9 +185,10 @@ build () {
 
   export PKG_CONFIG=/usr/bin/i686-pc-linux-gnu-pkg-config
   # Build only minimal debug info to reduce size
-  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=balanced -g1'
-  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=balanced -g1'
-
+  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
+  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
+  LDFLAGS="${LDFLAGS} ${CFLAGS}"
+  
   export BINDGEN_EXTRA_CLANG_ARGS="-m32"
 
   meson setup mesa _build "${meson_options[@]}"

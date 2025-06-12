@@ -13,7 +13,7 @@
 
 pkgname=mesa-git
 pkgdesc="an open-source implementation of the OpenGL specification, git version"
-pkgver=25.2.0_devel.205019.86d21fd2cfe.d41d8cd
+pkgver=25.2.0_devel.206750.f2613709954.d41d8cd
 pkgrel=1
 arch=('x86_64')
 makedepends=(
@@ -224,9 +224,10 @@ build () {
   )
 
   # Build only minimal debug info to reduce size
-  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=balanced -g1'
-  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=balanced -g1'
-
+  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
+  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
+  LDFLAGS="${LDFLAGS} ${CFLAGS}"
+  
   meson setup mesa _build "${meson_options[@]}"
   meson configure --no-pager _build
   ninja $NINJAFLAGS -C _build
