@@ -196,7 +196,6 @@ build () {
     -D gallium-extra-hud=true
     -D gallium-rusticl=true
     -D gallium-va=enabled
-    -D gallium-vdpau=enabled
     -D gbm=enabled
     -D gles1=disabled
     -D gles2=enabled
