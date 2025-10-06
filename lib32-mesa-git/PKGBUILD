@@ -13,7 +13,7 @@
 
 pkgname=lib32-mesa-git
 pkgdesc="an open-source implementation of the OpenGL specification, git version"
-pkgver=25.2.0_devel.206761.a9aad4565f3.d41d8cd
+pkgver=25.3.0_devel.213029.4e8f01b8641.d41d8cd
 pkgrel=1
 arch=('x86_64')
 makedepends=(
@@ -159,6 +159,7 @@ build () {
     -D glvnd=enabled 
     -D glx=dri 
     -D intel-rt=disabled
+    -D legacy-x11=dri2
     -D libunwind=disabled 
     -D llvm=enabled 
     -D lmsensors=enabled
@@ -167,7 +168,7 @@ build () {
     -D valgrind=disabled 
     -D video-codecs=all
     -D vulkan-drivers=amd 
-    -D vulkan-layers=device-select,overlay,screenshot
+    -D vulkan-layers=device-select,overlay
     -D vulkan-beta=true
     -D tools=[] 
     -D zstd=enabled 
