@@ -193,6 +193,7 @@ build () {
     -D egl=enabled
     -D gallium-drivers=radeonsi,softpipe,llvmpipe,zink
     -D gallium-extra-hud=true
+    -D gallium-mediafoundation=disabled
     -D gallium-rusticl=true
     -D gallium-va=enabled
     -D gbm=enabled
@@ -222,10 +223,9 @@ build () {
     -D sysconfdir=/etc
   )
 
-  # Build only minimal debug info to reduce size
-  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
-  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
-  LDFLAGS="${LDFLAGS} ${CFLAGS}"
+  # Build with native cpu, graphite and minimal debug
+  CFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
+  CXXFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
   
   meson setup mesa _build "${meson_options[@]}"
   meson configure --no-pager _build
