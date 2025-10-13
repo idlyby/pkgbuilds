@@ -80,7 +80,6 @@ provides=(
   'opengl-driver'
   'vulkan-driver'
   'vulkan-radeon'
-  'vulkan-swrast'
   'libva-mesa-driver'
   'mesa-vdpau'
   'mesa-libgl'
@@ -189,10 +188,10 @@ build () {
   local meson_options=(
     -D android-libbacktrace=disabled
     -D b_ndebug=true
-    -D b_lto=true
+    -D b_lto=false
     -D b_pgo=off
     -D egl=enabled
-    -D gallium-drivers=radeonsi,softpipe,zink
+    -D gallium-drivers=radeonsi,softpipe,llvmpipe,zink
     -D gallium-extra-hud=true
     -D gallium-rusticl=true
     -D gallium-va=enabled
@@ -224,8 +223,8 @@ build () {
   )
 
   # Build only minimal debug info to reduce size
-  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
-  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
+  CFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
+  CXXFLAGS+=' -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
   LDFLAGS="${LDFLAGS} ${CFLAGS}"
   
   meson setup mesa _build "${meson_options[@]}"
