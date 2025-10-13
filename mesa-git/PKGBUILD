@@ -87,6 +87,7 @@ provides=(
 )
 conflicts=(
   'vulkan-mesa-layers'
+  'vulkan-mesa-device-select'
   'opencl-clover-mesa'
   'opencl-rusticl-mesa'
   'vulkan-intel'
