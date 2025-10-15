@@ -146,7 +146,7 @@ build () {
     --native-file llvm32.native
     -D android-libbacktrace=disabled
     -D b_ndebug=true
-    -D b_lto=false
+    -D b_lto=true
     -D b_pgo=off
     -D buildtype=plain 
     -D gallium-drivers=radeonsi,softpipe,llvmpipe,zink 
@@ -161,7 +161,6 @@ build () {
     -D glvnd=enabled 
     -D glx=dri 
     -D intel-rt=disabled
-    -D legacy-x11=dri2
     -D libunwind=disabled 
     -D llvm=enabled 
     -D lmsensors=enabled
@@ -187,8 +186,8 @@ build () {
 
   export PKG_CONFIG=/usr/bin/i686-pc-linux-gnu-pkg-config
   # Build with native cpu, graphite and minimal debug
-  CFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
-  CXXFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
+  CFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
+  CXXFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -flto -fdevirtualize-at-ltrans -flto-partition=1to1 -g1'
   
   export BINDGEN_EXTRA_CLANG_ARGS="-m32"
 
