@@ -192,7 +192,7 @@ build () {
     -D b_lto=false
     -D b_pgo=off
     -D egl=enabled
-    -D gallium-drivers=radeonsi,softpipe,llvmpipe,zink
+    -D gallium-drivers=radeonsi
     -D gallium-extra-hud=true
     -D gallium-mediafoundation=disabled
     -D gallium-rusticl=true
@@ -212,11 +212,11 @@ build () {
     -D valgrind=disabled
     -D video-codecs=all
     -D vulkan-drivers=amd
-    -D vulkan-layers=device-select,intel-nullhw,overlay,anti-lag
+    -D vulkan-layers=device-select,overlay,anti-lag
     -D vulkan-beta=true
     -D tools=[]
     -D zstd=enabled
-    -D buildtype=plain
+    -D buildtype=release
     --wrap-mode=nofallback
     --force-fallback-for=syn,paste,rustc-hash
     -D prefix=/usr
@@ -224,8 +224,8 @@ build () {
   )
 
   # Build with native cpu, graphite and minimal debug
-  CFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
-  CXXFLAGS+=' -march=native -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
+  CFLAGS+=' -march=native -O3 -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
+  CXXFLAGS+=' -march=native -O3 -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
   
   meson setup mesa _build "${meson_options[@]}"
   meson configure --no-pager _build
