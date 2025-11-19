@@ -186,8 +186,8 @@ build () {
 
   export PKG_CONFIG=/usr/bin/i686-pc-linux-gnu-pkg-config
   # Build with native cpu, graphite and minimal debug
-  CFLAGS+=' -march=native -O3 -pipe -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
-  CXXFLAGS+=' -march=native -O3 -pipe -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
+  CFLAGS+=' -g1'
+  CXXFLAGS+=' -g1'
   
   export BINDGEN_EXTRA_CLANG_ARGS="-m32"
 

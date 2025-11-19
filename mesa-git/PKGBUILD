@@ -224,8 +224,8 @@ build () {
   )
 
   # Build with native cpu, graphite and minimal debug
-  CFLAGS+=' -march=native -O3 -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
-  CXXFLAGS+=' -march=native -O3 -fgraphite-identity -floop-strip-mine -floop-nest-optimize -fno-semantic-interposition -fipa-pta -g1'
+  CFLAGS+=' -g1'
+  CXXFLAGS+=' -g1'
   
   meson setup mesa _build "${meson_options[@]}"
   meson configure --no-pager _build
