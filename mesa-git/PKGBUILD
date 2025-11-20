@@ -136,8 +136,18 @@ declare -A _crates=(
    unicode-ident  1.0.12
 )
 
+# Used to generate the above table
+_gencrates() {
+  grep '^source_url' subprojects/*-rs.wrap | \
+    sed -r 's|.*crates/([^/]+)/([0-9.]+)/download|\1 \2|' | \
+    column -t -S 2 | sed 's/^/  /'
+}
+
 for _crate in "${!_crates[@]}"; do
-  source+=($_crate-${_crates[$_crate]}.tar.gz::https://crates.io/api/v1/crates/$_crate/${_crates[$_crate]}/download)
+  _ver="${_crates[$_crate]}"
+  source+=(
+    "$_crate-$_ver.tar.gz::https://crates.io/api/v1/crates/$_crate/$_ver/download"
+  )
 done
 
 pkgver() {
@@ -192,7 +202,7 @@ build () {
     -D b_lto=false
     -D b_pgo=off
     -D egl=enabled
-    -D gallium-drivers=radeonsi
+    -D gallium-drivers=radeonsi,virgl,zink
     -D gallium-extra-hud=true
     -D gallium-mediafoundation=disabled
     -D gallium-rusticl=true
@@ -209,9 +219,10 @@ build () {
     -D microsoft-clc=disabled
     -D platforms=x11,wayland
     -D rust_std=2021
+    -D sysprof=true
     -D valgrind=disabled
     -D video-codecs=all
-    -D vulkan-drivers=amd
+    -D vulkan-drivers=amd,virtio
     -D vulkan-layers=device-select,overlay,anti-lag
     -D vulkan-beta=true
     -D tools=[]

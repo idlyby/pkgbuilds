@@ -149,7 +149,7 @@ build () {
     -D b_lto=false
     -D b_pgo=off
     -D buildtype=release 
-    -D gallium-drivers=radeonsi
+    -D gallium-drivers=radeonsi,virgl,zink
     -D egl=enabled 
     -D gallium-extra-hud=true
     -D gallium-mediafoundation=disabled
@@ -168,7 +168,7 @@ build () {
     -D platforms=x11,wayland 
     -D valgrind=disabled 
     -D video-codecs=all
-    -D vulkan-drivers=amd 
+    -D vulkan-drivers=amd,virtio
     -D vulkan-layers=device-select,overlay
     -D vulkan-beta=true
     -D tools=[] 
