@@ -86,6 +86,7 @@ provides=(
   'mesa'
 )
 conflicts=(
+  'vulkan-mesa-implicit-layers'
   'vulkan-mesa-layers'
   'vulkan-mesa-device-select'
   'opencl-clover-mesa'
@@ -102,7 +103,6 @@ conflicts=(
 )
 url="https://www.mesa3d.org"
 license=('custom')
-# https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29275
 source=(
   'mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
   'LICENSE'
@@ -135,13 +135,6 @@ declare -A _crates=(
    syn            2.0.39
    unicode-ident  1.0.12
 )
-
-# Used to generate the above table
-_gencrates() {
-  grep '^source_url' subprojects/*-rs.wrap | \
-    sed -r 's|.*crates/([^/]+)/([0-9.]+)/download|\1 \2|' | \
-    column -t -S 2 | sed 's/^/  /'
-}
 
 for _crate in "${!_crates[@]}"; do
   _ver="${_crates[$_crate]}"
