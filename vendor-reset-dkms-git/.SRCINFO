@@ -9,7 +9,7 @@ pkgbase = vendor-reset-dkms-git
 	depends = dkms
 	conflicts = vendor-reset-git
 	source = git+https://github.com/gnif/vendor-reset.git
-	source = fix-moved-includes.patch::https://github.com/gnif/vendor-reset/pull/86.patch
+	source = fix-imports.patch::https://github.com/gnif/vendor-reset/pull/103.patch
 	md5sums = SKIP
 	md5sums = SKIP
 
