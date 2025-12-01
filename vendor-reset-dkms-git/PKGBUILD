@@ -13,7 +13,7 @@ makedepends=('git')
 conflicts=('vendor-reset-git')
 source=(
     'git+https://github.com/gnif/vendor-reset.git'
-    'fix-moved-includes.patch::https://github.com/gnif/vendor-reset/pull/86.patch'
+    'fix-imports.patch::https://github.com/gnif/vendor-reset/pull/103.patch'
     )
 md5sums=(
     'SKIP'
@@ -21,7 +21,7 @@ md5sums=(
     )
 
 prepare() {
-    patch -d "${srcdir}/$_pkgbase" -i "${srcdir}/fix-moved-includes.patch" -p1
+    patch -d "${srcdir}/$_pkgbase" -i "${srcdir}/fix-imports.patch" -p1
 }
 
 pkgver() {
