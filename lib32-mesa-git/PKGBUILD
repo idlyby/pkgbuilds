@@ -236,7 +236,7 @@ build () {
     -D b_lto=false
     -D b_pgo=off
     -D buildtype=release 
-    -D gallium-drivers=radeonsi,zink
+    -D gallium-drivers=radeonsi,svga,zink
     -D egl=enabled 
     -D gallium-extra-hud=true
     -D gallium-mediafoundation=disabled
