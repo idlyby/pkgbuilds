@@ -9,8 +9,8 @@
 
 pkgbase=glibc-eac
 pkgname=(glibc-eac lib32-glibc-eac glibc-eac-locales)
-pkgver=2.42+r33+gde1fe81f4714
-_commit=de1fe81f471496366580ad728b8986a3424b2fd7
+pkgver=2.42+r47+ga1d3294a5bed
+_commit=a1d3294a5bed821aece03994ab4e72c8b822a962
 pkgrel=1
 arch=(x86_64)
 url='https://www.gnu.org/software/libc'
